@@ -2,7 +2,34 @@ import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
    
-   
+   List image = [
+    "image/pic1.jpeg",
+    "image/pic2.jpeg",
+    "image/pic3.jpeg",
+    "image/pic4.jpg",
+    "image/pic5.jpg",
+  ];
+
+  List names = [
+    "pic1",
+    "pic2",
+    "pic3",
+    "pic4",
+    "pic5",
+
+  ];
+
+  List msgTiming =[
+    "Mon",
+    "12:30",
+    "sun",
+    "22:20",
+    "05:23",
+    "wed",
+
+
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +71,24 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15,),
-            ListView.builder(
+            SizedBox(
+              height: 100,
+              child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
+              itemCount: image.length,              
               itemBuilder: (context , index) {
-                return Container();
+                return Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage : AssetImage(
+                        image[index],),
+                      maxRadius: 20,
+                    ),
+                  ],
+                );
               },
+            ),
             )
           ],
         ),
