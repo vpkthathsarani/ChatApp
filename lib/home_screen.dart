@@ -8,14 +8,18 @@ class HomeScreen extends StatelessWidget {
     "image/pic3.jpeg",
     "image/pic4.jpg",
     "image/pic5.jpg",
+    "image/pic6.jpg",
+
   ];
 
   List names = [
-    "pic1",
-    "pic2",
-    "pic3",
-    "pic4",
-    "pic5",
+    "karu",
+    "Oshal",
+    "krishan",
+    "kaveesha",
+    "Malani",
+    "Thathsarani",
+
 
   ];
 
@@ -26,8 +30,18 @@ class HomeScreen extends StatelessWidget {
     "22:20",
     "05:23",
     "wed",
+    "janu",
 
 
+  ];
+
+  List msgs = [
+    "Hi, how are you?",
+    "where are you?",
+    "Hello dear, is all right?",
+    "It is nice to meet you",
+    "I want to meet you",
+    "Bye",
   ];
 
 
@@ -35,12 +49,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Padding(
-        padding: EdgeInsets.only(top: 15, left: 15),
+        padding: EdgeInsets.only(top: 15,),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 15),
+              padding: const EdgeInsets.only(right: 15, left: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -61,7 +75,10 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 5),
-            Text(
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+          
+            child:Text(
               "Recent",
               style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -70,26 +87,78 @@ class HomeScreen extends StatelessWidget {
                 letterSpacing: 1,
               ),
             ),
-            SizedBox(height: 15,),
-            SizedBox(
+            ),
+            SizedBox(height: 20),
+             Padding(
+              padding: const EdgeInsets.only(left: 15),
+            child:SizedBox(
               height: 100,
               child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemCount: image.length,              
               itemBuilder: (context , index) {
-                return Column(
+                return Padding(
+                  padding: const EdgeInsets.only(right: 25),
+              
+                child: Column(
+                  
                   children: [
                     CircleAvatar(
                       backgroundImage : AssetImage(
                         image[index],),
-                      maxRadius: 20,
+                      minRadius: 33,
                     ),
+                    SizedBox(height: 8,),
+                    Text(
+                      names[index],
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black54,
+                        fontSize: 17,
+                        letterSpacing: 1,
+              ),
+            ),
                   ],
+                ),
                 );
               },
             ),
-            )
+            ),
+             ),
+            SizedBox(height: 10,),
+            Divider(),
+            SizedBox(height: 20,),
+
+            ListView.builder(
+              itemCount: image.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context,index){
+              return ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(60),
+                  child: Image.asset(
+                    image[index],
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                title: Text(
+                  names[index],
+                  style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black54,
+                        fontSize: 17,
+                        letterSpacing: 1,
+              ),
+              ),
+                subtitle: Text(msgs[index]),
+                trailing: Text(msgTiming[index]),
+              );
+            })
+
           ],
         ),
       ),
