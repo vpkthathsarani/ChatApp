@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my/chat_screen.dart';
 
 class HomeScreen extends StatelessWidget {
    
@@ -126,16 +127,22 @@ class HomeScreen extends StatelessWidget {
             ),
             ),
              ),
-            SizedBox(height: 10,),
-            Divider(),
-            SizedBox(height: 20,),
+           
+            Container(
+              padding: EdgeInsets.only(top: 40),
+                     color: Colors.grey.shade200,
+                     //height: MediaQuery.of(context).size.height,
 
-            ListView.builder(
+              
+              child: ListView.builder(
               itemCount: image.length,
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context,index){
               return ListTile(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(),));
+                },
                 leading: ClipRRect(
                   borderRadius: BorderRadius.circular(60),
                   child: Image.asset(
@@ -158,8 +165,10 @@ class HomeScreen extends StatelessWidget {
                 trailing: Text(msgTiming[index]),
               );
             })
-
+            ),
+            
           ],
+        
         ),
       ),
     );
